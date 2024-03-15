@@ -1,57 +1,43 @@
-## Устранить ошибки в скрипте с помощью линтеров
+## ООП на практике
 
 ### Цель:
 
-Научиться работать с pull request и использовать линтеры
+Научиться писать код в ООП стиле
 
 ### Описание:
 
-1. Зарегистрироваться на github.com
-2. Создать репозиторий и склонировать его локально
-3. Создать новую ветку
-4. Скопировать в репозиторий файл [fix_me.py](fix_me.py)
-5. Установить один из линтеров - `flake8` или `pylint` (можно оба)
-6. Запустить проверку файла `fix_me.py` с помощью установленного линтера
-7. Изучить ошибки, которые выдаст линтер и устранить их
-8. Запустить линтер повторно и убедиться, что больше ошибок не возникает
-9. Добавить в репозиторий файлы `README.md` и `.gitignore`
-10. Оформить pull request и прислать его на проверку
+Создать базовый класс геометрической фигуры (Figure). 
+
+Реализовать классы геометрических фигур Треугольник, Прямоугольник, Квадрат, Круг (Triangle, Rectangle, Square, Circle).
+- Каждый класс должен располагаться в отдельном файле с соответствующим названием (например, `class Triangle` => `triangle.py`).
+- Все файлы с классами должны находиться в директории `src/` в корне репозитория.
+- Каждая фигура должна иметь методы для вычисления площади(`get_area()`) и периметра(`get_perimeter()`)
+- Треугольник должен задаваться тремя сторонами, если треугольник создать нельзя, то выбрасывать ошибку `raise ValueError`.
+
+Все вычисляемые свойства должны вычисляться по формулам для соответствующих геометрических фигур (никакого хардкода значений).
+
+Каждая фигура должна реализовать метод `add_area(figure)` который должен принимать другую геометрическую фигуру и возвращать сумму площадей этих фигур.
+
+Если в метод передана не геометрическая фигура, то нужно выбрасывать ошибку `raise ValueError`.
+
+Пример работы с одним из классов фигуры:
+
+```shell
+>>> square = Square(10) # Так создаем квадрат со стороной 10
+>>> square.area
+100
+>>> triangle = Triangle(13, 14, 15) # Так создаем треугольник со сторонами 13, 14, 15
+>>> triangle.area
+84
+>>> triangle.add_area(square)
+184
+```
 
 ### Критерии оценки:
 
-Статус "Принято" ставится, если:
-
-1. В репозитории есть файл `fix_me.py` с исправленными ошибками
-2. В репозитории есть файл `README.md` с описанием проекта
-3. В репозитории есть файл `.gitignore` с корректным набором инструкций
-4. В репозитории нет лишних файлов и директориев, например, `.idea`
-
-### Рекомендации:
-
-#### Статьи:
-
-[Настройка учетной записи GitHub](https://docs.github.com/ru/get-started/onboarding/getting-started-with-your-github-account)
-
-[Создание SSH-ключа и его добавление в ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-
-[Добавление SSH-ключа к учётной записи GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
-
-[Создание репозитория](https://docs.github.com/ru/repositories/creating-and-managing-repositories/creating-a-new-repository)
-
-[Клонирование репозитория](https://docs.github.com/ru/repositories/creating-and-managing-repositories/cloning-a-repository)
-
-[Создание виртуального окружения](https://timeweb.cloud/tutorials/python/kak-sozdat-virtualnoe-okruzhenie)
-
-[Ветвление в Git](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
-
-[Пример файла .gitignore](https://github.com/agridyaev/otus-intro/blob/master/.gitignore)
-
-[Создание pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
-
-#### Видео:
-
-[Python: основы работы с виртуальным окружением virtualenv (venv)](https://www.youtube.com/watch?v=P5JAskB55MM)
-
-[Пишем понятный код на Python. Кодстайл, название переменных (naming) и Pylint](https://www.youtube.com/watch?v=NyGvAq4CHH8)
-
-[Создаём pull-request на github.com](https://www.youtube.com/watch?v=swWqJBFpaNY)
+1. Будет оцениваться глубина использования парадигмы ООП. 
+2. Встроенные декораторы, наследование, отсутствие дублирования кода.
+3. Если какой-то метод выполняет одно и тоже во всех классах наследниках, то он должен принадлежать родительскому классу.
+4. Задание сдавать в формате pull-request. 
+5. Соблюдение минимального кодстайла.
+6. Никаких `print`-ов, закомментированного кода и лишних файлов быть не должно.
