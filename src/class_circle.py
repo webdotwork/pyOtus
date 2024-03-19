@@ -3,8 +3,8 @@ from class_figure import Figure
 
 
 class Circle(Figure):
-    def __init__(self, radius, name):
-        super().__init__(name="Circle")
+    def __init__(self, radius, name="Circle"):
+        super().__init__(name)
         if radius <= 0:
             raise ValueError("нельзя создать круг")
         self.radius = radius
