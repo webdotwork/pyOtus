@@ -1,4 +1,5 @@
 ### To Install Pylint
+https://gist.github.com/suiluj/3606f451b80dd840036d23833859d9f2
 ### Windows, Mac OS X & Debian:
 ```
    pip install pylint
