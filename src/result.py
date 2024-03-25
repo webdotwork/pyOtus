@@ -3,8 +3,8 @@ from json_writer import json_writer
 from csv_reader import csv_reader
 import json
 
-JSON_FILE_PATH = '/home/we/Desktop/Projects/Python/test/pyOtus/users.json'
-CSV_FILE_PATH = '/home/we/Desktop/Projects/Python/test/pyOtus/books.csv'
+JSON_FILE_PATH = "/home/we/Desktop/Projects/Python/test/pyOtus/users.json"
+CSV_FILE_PATH = "/home/we/Desktop/Projects/Python/test/pyOtus/books.csv"
 
 json_data_list = json_reader(JSON_FILE_PATH)
 csv_data_list = csv_reader(CSV_FILE_PATH)
