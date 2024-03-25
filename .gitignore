@@ -5,7 +5,9 @@ __pycache__/
 
 # idea files
 .idea/
-
+# test data
+*.csv
+*.json
 # C extensions
 *.so
 
