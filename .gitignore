@@ -13,7 +13,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+.venv/lib64/python3.10/site-packages/pip/_internal/operations/build/
 develop-eggs/
 dist/
 downloads/
