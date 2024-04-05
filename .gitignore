@@ -5,13 +5,15 @@ __pycache__/
 
 # idea files
 .idea/
-
+# test data
+*.csv
+!*.json
 # C extensions
 *.so
 
 # Distribution / packaging
 .Python
-build/
+.venv/lib64/python3.10/site-packages/pip/_internal/operations/build/
 develop-eggs/
 dist/
 downloads/
