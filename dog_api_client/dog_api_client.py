@@ -12,15 +12,15 @@ class DogApi:
         self.base_url = base_url
 
     def get_list_of_all_breeds(self):
-        response = self.session.get(url=f"{self.base_url}/breeds/list/all",)
+        response = self.session.get(url=f"{self.base_url}/list/all",)
         return response
 
-    def get_single_brewery(self, id_):
+    def get_single_breed(self, id_):
         self.id  = id_
-        response = self.session.get(url=f"{self.base_url}/breeds/{self.id}",)
+        response = self.session.get(url=f"{self.base_url}/{self.id}",)
         return response
 
-    def get_random_brewery(self):
+    def get_random_breed(self):
         response = self.session.get(url=f"{self.base_url}/breeds/image/random",)
         return response
 

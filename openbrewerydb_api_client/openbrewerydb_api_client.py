@@ -1,13 +1,13 @@
 import requests
+from typing import Optional
 
 class OpenBreweryDb:
 
     def __init__(self,
                  base_url="https://api.openbrewerydb.org/v1",):
-                 # auth_token="special-key"):
+                 # auth_token="special-key"):"Authorization": f"{auth_token}",
         self.session = requests.Session()
-        # self.session.headers = {"Authorization": f"{auth_token}",
-        #                         "Content-Type": "application/json"}
+        self.session.headers = {"Content-Type": "application/json"}
         self.session.verify = False
         self.base_url = base_url
 
@@ -21,6 +21,7 @@ class OpenBreweryDb:
         return response
 
     def get_random_brewery(self):
+        # self.params = params
         response = self.session.get(url=f"{self.base_url}/breweries/random",)
         return response
 

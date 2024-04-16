@@ -1,4 +1,5 @@
 import requests
+from typing import Optional
 
 class JsonPlaceHolder:
 
@@ -11,24 +12,17 @@ class JsonPlaceHolder:
         self.session.verify = False
         self.base_url = base_url
 
-    def get_list_of_users(self):
-        response = self.session.get(url=f"{self.base_url}/users",)
+    def get_posts(self):
+        response = self.session.get(url=f"{self.base_url}/posts",)
         return response
 
     def get_list_of_posts(self):
         response = self.session.get(url=f"{self.base_url}/users",)
         return response
 
-    def post_photo(self, id_):
-        self.id  = id_
-        response = self.session.get(url=f"{self.base_url}/photos/{self.id}",)
+    def post_post(self, json=None):
+        if json is None:
+            json = {}
+        self.json  = json
+        response = self.session.post(url=f"{self.base_url}/posts", json=self.json)
         return response
-
-    def post_post(self):
-        response = self.session.get(url=f"{self.base_url}/comments",)
-        return response
-
-    # def create_pet(self, data):
-    #     response = self.session.post(f"{self.base_url}/pet",
-    #                                  json=data)
-    #     return response random

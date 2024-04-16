@@ -22,6 +22,15 @@ jobs:
     - name: Run Black
       run: black ./src
 
+    - name: Run Test https://jsonplaceholder.typicode.com
+      run: python -m pytest --url=https://jsonplaceholder.typicode.com
+
+    - name: Run Test https://api.openbrewerydb.org/v1 DEFAULT
+      run: python -m pytest
+
+    - name: Run Test https://dog.ceo/api
+      run: python -m pytest --url=https://dog.ceo/api
+
 #    - name: Run pylint
 #      run: pylint ./src
 

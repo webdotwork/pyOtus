@@ -1,46 +1,60 @@
+import json
 import pytest
-
-# from jsonschema import validate
-#
-# from schemas import schema
-
-
-# @pytest.mark.parametrize(["status", "code"],
-#                          [("available", 200), ("pending", 200), ("sold", 200)])
-# def test_get_pet_by_status(api_client, status, code):
-#     query = {"status": status}
-#     response = api_client.get_pets_by_status(query)
-#     json_response = response.json()
-#     assert response.status_code == code
-#     assert json_response
-#     validate(instance=json_response[0], schema=schema)
+import requests
+import cerberus
 
 @pytest.mark.parametrize(["status", "code"],
                          [("available", 200), ("pending", 200), ("sold", 200)])
 def test_get_list_of_all_breeds(api_dogsapi_client, status, code):
     response = api_dogsapi_client.get_list_of_all_breeds()
-    json_response = response.json()
-    print(json_response)
     assert response.status_code == code
-    assert json_response
+    assert response.headers
+    assert response.json()
+    assert len(response.json()["message"]) != 0
+    print(response.json()["message"])
+    # breeds = all((response.json()["message"]))
+    # return breeds
 
-def test_get_single_brewery(api_dogsapi_client):
-    response = api_dogsapi_client.get_single_breeds("b54b16e1-ac3b-4bff-a11f-f7ae9ddc27e0")
-    json_response = response.json()
-    print(json_response)
-    assert response.status_code
-    assert json_response
+breeds = ["african", "coco", "akita"]
+@pytest.mark.parametrize('breeds', [breeds])
+def test_get_single_breed(breeds):
+    for breed in breeds:
+        print(breed)
+        res = requests.get(f"https://dog.ceo/api/breed/{breed}/images/random",)
+        assert res.status_code
+        assert res.headers
+        assert res.json()
+        print(res.json())
+        if breed == "coco":
+            assert res.status_code == 404
 
-def test_get_random_breeds(api_dogsapi_client):
-    response = api_dogsapi_client.get_random_breeds()
-    # json_response = response.json()
-    # print(json_response)
-    assert response.status_code
-    # assert json_response
+schema = {
+        # "message": str,
+        "status": 'success'
+        }
 
-def test_get_random_breeds(api_dogsapi_client):
-    response = api_dogsapi_client.get_random_breeds()
-    # json_response = response.json()
-    # print(json_response)
+def test_get_random_breed_one(api_dogsapi_client):
+    # Verify addition and response
+    try:
+        response = api_dogsapi_client.get_random_breed()
+        assert response.json().get("status") == "success"
+    except AssertionError:
+        raise AssertionError(response.json())
+
+def test_get_random_breed_two(api_dogsapi_client):
+    # Verify addition and response
+    try:
+        response = api_dogsapi_client.get_random_breed()
+        assert response.json() == schema
+    except AssertionError:
+        raise AssertionError(response.json())
+    #
+
+def test_get_list_of_all_breeds2(api_dogsapi_client):
+    response = api_dogsapi_client.get_list_of_all_breeds()
     assert response.status_code
-    # assert json_response
+    assert response.headers
+    assert response.json()
+    breeds = all((response.json()["message"]))
+    assert breeds
+

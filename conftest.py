@@ -7,7 +7,7 @@ def pytest_addoption(parser):
     parser.addoption(
         "--url",
         default="https://api.openbrewerydb.org/v1",
-        # choices=["https://petstore.swagger.io/v2", "https://petstore.swagger.io/v1"],
+        choices=["https://dog.ceo/api", "https://jsonplaceholder.typicode.com"],
         help="This is request url"
     )
 
@@ -18,11 +18,18 @@ def pytest_addoption(parser):
     )
 
 
+
+
 @pytest.fixture
 def base_url(request):
     return request.config.getoption("--url")
-
-
+    # if is_production_environment():
+    #     return chosen_url  # Return the chosen URL
+    # elif some_condition():
+    #     return "https://dog.ceo/api/breeds"  # Return one URL
+    # else:
+    #     return "https://petstore.swagger.io/v1"  # Return the other URL
+#
 @pytest.fixture
 def token(request):
     return request.config.getoption("--token")
