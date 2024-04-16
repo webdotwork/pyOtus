@@ -1,7 +1,7 @@
 import json
 import pytest
 import requests
-import cerberus
+
 
 @pytest.mark.parametrize(["status", "code"],
                          [("available", 200), ("pending", 200), ("sold", 200)])
