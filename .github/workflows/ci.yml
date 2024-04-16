@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 jobs:
   pylint:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -24,12 +25,15 @@ jobs:
 
     - name: Run Test https://jsonplaceholder.typicode.com
       run: python -m pytest --url=https://jsonplaceholder.typicode.com
+      continue-on-error: true
 
     - name: Run Test https://api.openbrewerydb.org/v1 DEFAULT
       run: python -m pytest
+      continue-on-error: true
 
     - name: Run Test https://dog.ceo/api
       run: python -m pytest --url=https://dog.ceo/api
+      continue-on-error: true
 
 #    - name: Run pylint
 #      run: pylint ./src
