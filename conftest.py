@@ -1,51 +1,41 @@
 import pytest
 
-from pyOtus.openbrewerydb_api_client.openbrewerydb_api_client import OpenBreweryDb
-from pyOtus.jsonplaceholder_api_client.jsonplaceholder_api_client import JsonPlaceHolder
-from pyOtus.dog_api_client.dog_api_client import DogApi
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromiumService
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.service import Service as FFService
+from selenium.webdriver.firefox.options import Options as FFOptions
+
+
 def pytest_addoption(parser):
-    parser.addoption(
-        "--url",
-        default="https://api.openbrewerydb.org/v1",
-        choices=["https://dog.ceo/api", "https://jsonplaceholder.typicode.com"],
-        help="This is request url"
-    )
-
-    parser.addoption(
-        "--token",
-        help="token to authorize",
-
-    )
+    parser.addoption("--browser", action="store", default="chrome")
+    parser.addoption("--url", action="store", default="http://10.0.47.57:8081")
+    parser.addoption("--headless", action="store_true")
 
 
+@pytest.fixture()
+def browser(request):
+    browser_name = request.config.getoption("--browser")
+    url = request.config.getoption("--url")
+    headless_mode = request.config.getoption("--headless")
 
+    if browser_name == "chrome":
+        options = Options()
+        if headless_mode:
+            options.add_argument("headless=new")
+        driver = webdriver.Chrome(service=ChromiumService(), options=options)
+    elif browser_name == "firefox":
+        # service = FFService(executable_path="/snap/bin/geckodriver") Для ubuntu 22.04
+        driver = webdriver.Firefox(options=FFOptions(), service=FFService())
+    else:
+        driver = webdriver.Safari()
 
-@pytest.fixture
-def base_url(request):
-    return request.config.getoption("--url")
-    # if is_production_environment():
-    #     return chosen_url  # Return the chosen URL
-    # elif some_condition():
-    #     return "https://dog.ceo/api/breeds"  # Return one URL
-    # else:
-    #     return "https://petstore.swagger.io/v1"  # Return the other URL
-#
-@pytest.fixture
-def token(request):
-    return request.config.getoption("--token")
+    driver.maximize_window()
 
+    request.addfinalizer(driver.close)
 
-@pytest.fixture(scope="function")
-def api_brewerydb_client(base_url):
-    client = OpenBreweryDb(base_url=base_url)
-    return client
+    driver.get(url)
+    driver.url = url
 
-@pytest.fixture(scope="function")
-def api_jsonplaceholder_client(base_url):
-    client = JsonPlaceHolder(base_url=base_url)
-    return client
-
-@pytest.fixture(scope="function")
-def api_dogsapi_client(base_url):
-    client = DogApi(base_url=base_url)
-    return client
+    return driver
