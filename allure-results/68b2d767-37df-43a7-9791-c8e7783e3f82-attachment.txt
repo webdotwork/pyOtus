@@ -1,0 +1,18 @@
+[32mINFO    [0m test_login:test_login.py:25 ====== Started: 1722019379 ======
+[35mDEBUG   [0m test_login:test_login.py:28 Navigating to Main Page
+[35mDEBUG   [0m test_login:test_login.py:30 Clicking My Account
+[35mDEBUG   [0m test_login:test_login.py:35 Clicking Register User
+[35mDEBUG   [0m test_login:test_login.py:40 Filling registration form
+[35mDEBUG   [0m test_login:test_login.py:49 Agreeing to terms and conditions
+[35mDEBUG   [0m test_login:test_login.py:54 Submitting registration form
+[35mDEBUG   [0m test_login:test_login.py:59 Accepting registration
+[35mDEBUG   [0m test_login:test_login.py:64 Logging out new user
+[35mDEBUG   [0m test_login:test_login.py:69 Navigating back to My Account
+[35mDEBUG   [0m test_login:test_login.py:71 Clicking Login
+[35mDEBUG   [0m test_login:test_login.py:76 Entering login credentials
+[35mDEBUG   [0m test_login:test_login.py:79 Submitting login form
+[35mDEBUG   [0m test_login:test_login.py:84 Checking if "My Account" link is present
+[31m[1mERROR   [0m test_login:test_login.py:93 Error during test execution: тест провален DUDE!!
+assert 'Address Book' == 'My Account'
+  - My Account
+  + Address Book

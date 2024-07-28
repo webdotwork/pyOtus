@@ -1,0 +1,6 @@
+[32mINFO    [0m test_add_new_user:test_add_new_user.py:20 ====== Started: 1722155055 ======
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:22 Navigating to Main Page
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:25 Clicking My Account
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:28 Clicking Register User
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:31 Filling registration form
+[1m[31mERROR   [0m test_add_new_user:test_add_new_user.py:58 Error during test execution: 'RegisterUser' object has no attribute 'input_data_first_name'

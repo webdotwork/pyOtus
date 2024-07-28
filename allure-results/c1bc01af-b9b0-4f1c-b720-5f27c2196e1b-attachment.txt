@@ -1,0 +1,24 @@
+[32mINFO    [0m test_login:test_login.py:23 ====== Started: 1722156929 ======
+[35mDEBUG   [0m test_login:test_login.py:26 Navigating to Main Page
+[35mDEBUG   [0m test_login:test_login.py:28 Clicking My Account
+[31m[1mERROR   [0m test_login:test_login.py:88 Error during test execution: Message: 
+Stacktrace:
+#0 0x642c61504f83 <unknown>
+#1 0x642c611bdcf7 <unknown>
+#2 0x642c6120d99e <unknown>
+#3 0x642c6120daa1 <unknown>
+#4 0x642c61258d64 <unknown>
+#5 0x642c612370dd <unknown>
+#6 0x642c61256006 <unknown>
+#7 0x642c61236e53 <unknown>
+#8 0x642c611fedd4 <unknown>
+#9 0x642c612001de <unknown>
+#10 0x642c614c9531 <unknown>
+#11 0x642c614cd455 <unknown>
+#12 0x642c614b5f55 <unknown>
+#13 0x642c614ce0ef <unknown>
+#14 0x642c6149999f <unknown>
+#15 0x642c614f2008 <unknown>
+#16 0x642c614f21d7 <unknown>
+#17 0x642c61504124 <unknown>
+#18 0x76788be94ac3 <unknown>

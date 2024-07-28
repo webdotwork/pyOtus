@@ -1,0 +1,24 @@
+[32mINFO    [0m test_add_new_user:test_add_new_user.py:20 ====== Started: 1722156552 ======
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:22 Navigating to Main Page
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:25 Clicking My Account
+[1m[31mERROR   [0m test_add_new_user:test_add_new_user.py:55 Error during test execution: Message: 
+Stacktrace:
+#0 0x5cd0fa78bf83 <unknown>
+#1 0x5cd0fa444cf7 <unknown>
+#2 0x5cd0fa49499e <unknown>
+#3 0x5cd0fa494aa1 <unknown>
+#4 0x5cd0fa4dfd64 <unknown>
+#5 0x5cd0fa4be0dd <unknown>
+#6 0x5cd0fa4dd006 <unknown>
+#7 0x5cd0fa4bde53 <unknown>
+#8 0x5cd0fa485dd4 <unknown>
+#9 0x5cd0fa4871de <unknown>
+#10 0x5cd0fa750531 <unknown>
+#11 0x5cd0fa754455 <unknown>
+#12 0x5cd0fa73cf55 <unknown>
+#13 0x5cd0fa7550ef <unknown>
+#14 0x5cd0fa72099f <unknown>
+#15 0x5cd0fa779008 <unknown>
+#16 0x5cd0fa7791d7 <unknown>
+#17 0x5cd0fa78b124 <unknown>
+#18 0x7b717be94ac3 <unknown>

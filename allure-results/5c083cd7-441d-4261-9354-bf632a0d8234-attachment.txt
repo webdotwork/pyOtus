@@ -1,0 +1,16 @@
+[32mINFO    [0m test_add_new_goods:test_add_new_goods.py:15 ====== Started: 1722156736 ======
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:17 Opening Admin Page
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:20 Inputting admin credentials
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:23 Submitting admin credentials
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:26 Navigating to Catalog
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:29 Navigating to Products
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:32 Adding new product
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:35 Entering product description
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:38 Entering product category
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:41 Entering product tags
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:44 Navigating to SEO tab
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:47 Entering SEO data
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:50 Navigating to Data tab
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:53 Entering product model
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:56 Submitting new product form
+[32mINFO    [0m test_add_new_goods:test_add_new_goods.py:59 ====== Finished: 1722156746 ======
