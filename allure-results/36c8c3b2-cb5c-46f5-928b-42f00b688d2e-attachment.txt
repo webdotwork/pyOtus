@@ -1,0 +1,4 @@
+[32mINFO    [0m test_del_goods:test_del_goods.py:15 ====== Started: 1722155920 ======
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:17 Opening Admin Page
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:20 Inputting admin credentials
+[1m[31mERROR   [0m test_del_goods:test_del_goods.py:38 Error during test execution: 'AdminPage' object has no attribute 'input_admin_credentials'

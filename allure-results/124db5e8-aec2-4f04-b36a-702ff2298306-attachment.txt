@@ -1,0 +1,3 @@
+[32mINFO    [0m test_curency_check:test_curency_check.py:18 ====== Started: 1722156918 ======
+[35mDEBUG   [0m test_curency_check:test_curency_check.py:20 Getting list of currency switch options
+[31m[1mERROR   [0m test_curency_check:test_curency_check.py:52 Error during test execution: Message:

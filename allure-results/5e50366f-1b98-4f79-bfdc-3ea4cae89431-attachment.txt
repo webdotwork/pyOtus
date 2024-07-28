@@ -1,0 +1,11 @@
+[32mINFO    [0m test_add_new_user:test_add_new_user.py:20 ====== Started: 1722019140 ======
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:22 Navigating to Main Page
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:25 Clicking My Account
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:28 Clicking Register User
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:31 Filling registration form
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:38 Agreeing to terms and conditions
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:41 Submitting registration form
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:44 Accepting registration
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:47 Logging out new user
+[35mDEBUG   [0m test_add_new_user:test_add_new_user.py:50 Checking if "My Account" link is present
+[32mINFO    [0m test_add_new_user:test_add_new_user.py:55 ====== Finished: 1722019146 ======

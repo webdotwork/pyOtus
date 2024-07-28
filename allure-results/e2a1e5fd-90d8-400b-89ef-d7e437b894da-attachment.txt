@@ -1,0 +1,24 @@
+[32mINFO    [0m test_del_goods:test_del_goods.py:16 ====== Started: 1722155061 ======
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:18 Opening Admin Page
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:21 Inputting admin name
+[1m[31mERROR   [0m test_del_goods:test_del_goods.py:48 Error during test execution: Message: 
+Stacktrace:
+#0 0x5f16e6ed1f83 <unknown>
+#1 0x5f16e6b8acf7 <unknown>
+#2 0x5f16e6bda99e <unknown>
+#3 0x5f16e6bdaaa1 <unknown>
+#4 0x5f16e6c25d64 <unknown>
+#5 0x5f16e6c040dd <unknown>
+#6 0x5f16e6c23006 <unknown>
+#7 0x5f16e6c03e53 <unknown>
+#8 0x5f16e6bcbdd4 <unknown>
+#9 0x5f16e6bcd1de <unknown>
+#10 0x5f16e6e96531 <unknown>
+#11 0x5f16e6e9a455 <unknown>
+#12 0x5f16e6e82f55 <unknown>
+#13 0x5f16e6e9b0ef <unknown>
+#14 0x5f16e6e6699f <unknown>
+#15 0x5f16e6ebf008 <unknown>
+#16 0x5f16e6ebf1d7 <unknown>
+#17 0x5f16e6ed1124 <unknown>
+#18 0x71353aa94ac3 <unknown>

@@ -1,0 +1,7 @@
+[32mINFO    [0m test_del_goods:test_del_goods.py:15 ====== Started: 1722157235 ======
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:17 Opening Admin Page
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:20 Inputting admin credentials
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:23 Submitting admin credentials
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:26 Navigating to Catalog and Products
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:29 Selecting product checkbox for deletion and confirming
+[32mINFO    [0m test_del_goods:test_del_goods.py:32 ====== Finished: 1722157240 ======

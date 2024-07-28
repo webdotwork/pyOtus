@@ -1,0 +1,5 @@
+[32mINFO    [0m test_del_goods:test_del_goods.py:15 ====== Started: 1722156562 ======
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:17 Opening Admin Page
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:20 Inputting admin credentials
+[35mDEBUG   [0m test_del_goods:test_del_goods.py:23 Submitting admin credentials
+[1m[31mERROR   [0m test_del_goods:test_del_goods.py:35 Error during test execution: 'AdminPage' object has no attribute 'submit'

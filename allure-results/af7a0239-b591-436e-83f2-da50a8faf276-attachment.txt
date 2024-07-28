@@ -1,0 +1,24 @@
+[32mINFO    [0m test_add_new_goods:test_add_new_goods.py:16 ====== Started: 1722155050 ======
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:18 Opening Admin Page
+[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:21 Inputting admin name
+[1m[31mERROR   [0m test_add_new_goods:test_add_new_goods.py:66 Error during test execution: Message: 
+Stacktrace:
+#0 0x6545b9141f83 <unknown>
+#1 0x6545b8dfacf7 <unknown>
+#2 0x6545b8e4a99e <unknown>
+#3 0x6545b8e4aaa1 <unknown>
+#4 0x6545b8e95d64 <unknown>
+#5 0x6545b8e740dd <unknown>
+#6 0x6545b8e93006 <unknown>
+#7 0x6545b8e73e53 <unknown>
+#8 0x6545b8e3bdd4 <unknown>
+#9 0x6545b8e3d1de <unknown>
+#10 0x6545b9106531 <unknown>
+#11 0x6545b910a455 <unknown>
+#12 0x6545b90f2f55 <unknown>
+#13 0x6545b910b0ef <unknown>
+#14 0x6545b90d699f <unknown>
+#15 0x6545b912f008 <unknown>
+#16 0x6545b912f1d7 <unknown>
+#17 0x6545b9141124 <unknown>
+#18 0x7a8c43894ac3 <unknown>
