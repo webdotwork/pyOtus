@@ -1,0 +1,26 @@
+### lesson 10
+```
+Отчёт о состоянии системы:
+Пользователи системы: message+, avahi, lp, kernoops, we, rtkit, colord, root, systemd+, syslog
+Процессов запущено: 369
+
+Пользовательских процессов:
+root: 252
+systemd+: 3
+avahi: 2
+message+: 1
+syslog: 1
+colord: 1
+we: 104
+rtkit: 1
+kernoops: 2
+lp: 2
+
+Всего памяти используется: 35.3%
+Всего CPU используется: 69.6%
+Больше всего памяти использует: /opt/pycharm-communi (11.2%)
+Больше всего CPU использует: /opt/pycharm-communi (43.8%)
+
+Отчёт сохранён в файл: 28-07-2024-21:54-scan.txt
+
+```
