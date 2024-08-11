@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+chromedriver/
 # idea files
 .idea/
 # test data
@@ -31,6 +31,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+src/echo_serv.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
