@@ -1,12 +1,7 @@
 import pytest
-
-
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromiumService
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.firefox.service import Service as FFService
-from selenium.webdriver.firefox.options import Options as FFOptions
-
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome")
@@ -14,10 +9,9 @@ def pytest_addoption(parser):
     parser.addoption(
         "--url",
         default="http://10.0.47.57:8081",
-        choices=["http://10.0.47.57:8081", "http://10.0.47.57:8081/administration/"], # pytest --url http://10.0.47.57:8081/administration/ tests/test_add_new_goods.py tests/test_del_goods.py
-        help="This is request url"
+        choices=["http://10.0.47.57:8081", "http://10.0.47.57:8081/administration/"],
+        help="This is request URL"
     )
-
 
 @pytest.fixture()
 def browser(request):
@@ -25,21 +19,52 @@ def browser(request):
     url = request.config.getoption("--url")
     headless_mode = request.config.getoption("--headless")
 
+    selenoid_url = "http://10.0.47.57:4444/wd/hub"
 
     if browser_name == "chrome":
-        options = Options()
+        options = ChromeOptions()
         if headless_mode:
             options.add_argument("headless=new")
-        driver = webdriver.Chrome(service=ChromiumService(), options=options)
+        options.set_capability("selenoid:options", {
+            "enableVNC": True,
+            "enableVideo": False
+        })
+        options.browser_version = "126.0"
+        driver = webdriver.Remote(
+            command_executor=selenoid_url,
+            options=options
+        )
     elif browser_name == "firefox":
-        # service = FFService(executable_path="/snap/bin/geckodriver") Для ubuntu 22.04
-        driver = webdriver.Firefox(options=FFOptions(), service=FFService())
+        options = FirefoxOptions()
+        if headless_mode:
+            options.add_argument("--headless")
+        options.set_capability("selenoid:options", {
+            "enableVNC": True,
+            "enableVideo": False
+        })
+        options.browser_version = "124.0"
+        driver = webdriver.Remote(
+            command_executor=selenoid_url,
+            options=options
+        )
+    elif browser_name == "opera":
+        options = webdriver.ChromeOptions()
+        options.set_capability("browserName", "opera")
+        options.set_capability("selenoid:options", {
+            "enableVNC": True,
+            "enableVideo": False
+        })
+        options.browser_version = "108.0"
+        driver = webdriver.Remote(
+            command_executor=selenoid_url,
+            options=options
+        )
     else:
-        driver = webdriver.Safari()
+        raise ValueError(f"Unsupported browser: {browser_name}")
 
     driver.maximize_window()
 
-    request.addfinalizer(driver.close)
+    request.addfinalizer(driver.quit)
 
     driver.get(url)
     driver.url = url
