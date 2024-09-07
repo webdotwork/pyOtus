@@ -1,5 +1,5 @@
 import pytest
-from page_objects.admin_page import AdminPage
+from pyOtus.page_objects.admin_page import AdminPage
 import logging
 import time
 

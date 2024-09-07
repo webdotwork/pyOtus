@@ -9,7 +9,7 @@ def pytest_addoption(parser):
     parser.addoption(
         "--url",
         default="http://10.0.47.57:8081",
-        choices=["http://10.0.47.57:8081", "http://10.0.47.57:8081/administration/"],
+        choices=["http://10.0.47.57:8081/", "http://10.0.47.57:8081/administration/"],
         help="This is request URL"
     )
 
@@ -27,7 +27,7 @@ def browser(request):
             options.add_argument("headless=new")
         options.set_capability("selenoid:options", {
             "enableVNC": True,
-            "enableVideo": False
+            "enableVideo": True #False
         })
         options.browser_version = "126.0"
         driver = webdriver.Remote(

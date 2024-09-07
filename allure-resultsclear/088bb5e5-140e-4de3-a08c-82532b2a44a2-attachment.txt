@@ -1,0 +1,4 @@
+[32mINFO    [0m test_main_page:test_main_page.py:21 ====== Started: 1725735824 ======
+[35mDEBUG   [0m test_main_page:test_main_page.py:24 Navigating to Main Page
+[35mDEBUG   [0m test_main_page:test_main_page.py:30 Clicking Login
+[32mINFO    [0m test_main_page:test_main_page.py:38 ====== Finished: 1725735826 ======

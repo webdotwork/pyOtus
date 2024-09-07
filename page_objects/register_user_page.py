@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
-from helpers import random_string, random_email
-from page_objects.base_page import BasePage
+from pyOtus.helpers import random_string, random_email
+from pyOtus.page_objects.base_page import BasePage
 
 
 class RegisterUser(BasePage):

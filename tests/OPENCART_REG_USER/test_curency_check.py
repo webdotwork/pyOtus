@@ -2,10 +2,9 @@ import pytest
 import random
 import time
 from selenium.webdriver.common.by import By
-from page_objects.base_page import BasePage
+from pyOtus.page_objects.base_page import BasePage
 import logging
 
-# Configure logging
 logger = logging.getLogger(__name__)
 file_handler = logging.FileHandler('example.log')
 file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
@@ -52,5 +51,4 @@ def test_main_page_currency(browser):
         logger.error('Error during test execution: %s', e)
         raise
     finally:
-        time.sleep(1)  # Pause for demonstration
-
+        time.sleep(1)

@@ -1,13 +1,13 @@
 import pytest
-from page_objects.register_user_page import RegisterUser
-from page_objects.main_page import MainPage
+from pyOtus.page_objects.register_user_page import RegisterUser
+from pyOtus.page_objects.main_page import MainPage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import logging
 import time
 
-# Configure logging
+
 logger = logging.getLogger(__name__)
 file_handler = logging.FileHandler('example.log')
 file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
@@ -33,13 +33,13 @@ def test_add_new_user(browser):
         register_user.fill_registration_form()
 
         logger.debug('Agreeing to terms and conditions')
-        register_user.agree_to_terms()
+        register_user.click_check_box()
 
         logger.debug('Submitting registration form')
-        register_user.submit_registration()
+        register_user.submit()
 
         logger.debug('Accepting registration')
-        register_user.accept_registration()
+        register_user.accept()
 
         logger.debug('Logging out new user')
         register_user.logout()

@@ -1,12 +1,12 @@
 import pytest
-from page_objects.admin_page import AdminPage
+from pyOtus.page_objects.admin_page import AdminPage
 import logging
 import time
 
 # Configure logging
 logger = logging.getLogger(__name__)
 file_handler = logging.FileHandler('example.log')
-file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levellevel)s - %(message)s'))
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
 logger.addHandler(file_handler)
 logger.setLevel(logging.DEBUG)
 
