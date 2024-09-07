@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
-from pyOtus.helpers import random_string, random_email
-from pyOtus.page_objects.base_page import BasePage
+from helpers import random_string, random_email
+from page_objects.base_page import BasePage
 
 class AdminPage(BasePage):
     INPUT_NAME = (By.CSS_SELECTOR, "input[name='username']")

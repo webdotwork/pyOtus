@@ -2,7 +2,7 @@ import time
 
 from selenium.webdriver.common.by import By
 
-from pyOtus.page_objects.base_page import BasePage
+from page_objects.base_page import BasePage
 
 
 class UserPage(BasePage):
