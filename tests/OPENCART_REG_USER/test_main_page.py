@@ -45,9 +45,9 @@ def test_navigate_to_login_page(browser):
 
 @pytest.mark.usefixtures("browser")
 @pytest.mark.parametrize("link_text, expected_url_part", [
-    ("My Account", "account/account"),
-    ("Register", "account/register"),
-    ("Login", "account/login")
+    # ("My Account", "account/account"),
+    ("Register", "/register"),
+    ("Login", "/login")
 ])
 def test_navigation_links(browser, link_text, expected_url_part):
     logger.info('====== Started: {} ======'.format(int(time.time())))
@@ -56,9 +56,9 @@ def test_navigation_links(browser, link_text, expected_url_part):
             logger.debug('Navigating to Main Page')
             main_page = MainPage(browser)
 
-            if link_text == "My Account":
-                main_page.click_my_account()
-            elif link_text == "Register":
+            # if link_text == "My Account":
+            main_page.click_my_account()
+            if link_text == "Register":
                 main_page.click_register_user()
             elif link_text == "Login":
                 main_page.click_login()

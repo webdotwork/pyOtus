@@ -23,10 +23,10 @@ def test_add_new_user(browser):
         main_page = MainPage(browser)
 
         logger.debug('Clicking My Account')
-        main_page.click((By.CSS_SELECTOR, "a[title='My Account']"))
+        main_page.click((By.CSS_SELECTOR, "#top > div > div.nav.float-end > ul > li:nth-child(2) > div > a"))
 
         logger.debug('Clicking Register User')
-        main_page.click((By.CSS_SELECTOR, "a[title='Register']"))
+        main_page.click((By.CSS_SELECTOR, "#top > div > div.nav.float-end > ul > li:nth-child(2) > div > ul > li:nth-child(1) > a"))
 
         logger.debug('Filling registration form')
         register_user = RegisterUser(browser)

@@ -1,5 +1,0 @@
-[32mINFO    [0m test_main_page:test_main_page.py:53 ====== Started: 1725735830 ======
-[35mDEBUG   [0m test_main_page:test_main_page.py:56 Navigating to Main Page
-[1m[31mERROR   [0m test_main_page:test_main_page.py:74 Error during test execution: Navigation to My Account failed.
-assert 'account/account' in 'http://10.0.47.57:8081/'
- +  where 'http://10.0.47.57:8081/' = <selenium.webdriver.remote.webdriver.WebDriver (session="a781d526a42d8cad00b5a30f7b56ed75")>.current_url
