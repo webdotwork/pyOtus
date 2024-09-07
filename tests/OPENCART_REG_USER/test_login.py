@@ -3,8 +3,8 @@ import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from pyOtus.page_objects.main_page import MainPage
-from pyOtus.page_objects.register_user_page import RegisterUser
+from page_objects.main_page import MainPage
+from page_objects.register_user_page import RegisterUser
 import logging
 import time
 

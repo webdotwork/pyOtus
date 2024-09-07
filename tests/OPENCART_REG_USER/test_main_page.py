@@ -2,7 +2,7 @@ import pytest
 import allure
 import logging
 import time
-from pyOtus.page_objects.main_page import MainPage
+from page_objects.main_page import MainPage
 
 
 logger = logging.getLogger(__name__)
