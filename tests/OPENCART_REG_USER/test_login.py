@@ -155,7 +155,7 @@ def test_login(browser):
 
         with allure.step('Checking if "My Account" link is present'):
             logger.debug('Checking if "My Account" link is present')
-            check = WebDriverWait(browser, 2).until(
+            check = WebDriverWait(browser, 4).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, "#column-right > div > a:nth-child(1)")))
             assert check.text == 'My Account', "тест провален DUDE!!"
             take_screenshot(browser, 'My Account Link Present')
