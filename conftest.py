@@ -1,9 +1,21 @@
+import os
+import random
+import time
+import allure
+import requests
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 def pytest_addoption(parser):
+    # parser.addoption("--browser", action="store", default="chrome")
+    parser.addoption("--executor", action="store", default="127.0.0.1")
+    parser.addoption("--mobile", action="store_true")
+    parser.addoption("--vnc", action="store_true")
+    parser.addoption("--logs", action="store_true")
+    parser.addoption("--video", action="store_true")
+    parser.addoption("--bv")
     parser.addoption("--browser", action="store", default="chrome")
     parser.addoption("--headless", action="store_true")
     parser.addoption(
@@ -16,6 +28,12 @@ def pytest_addoption(parser):
 @pytest.fixture()
 def browser(request):
     browser_name = request.config.getoption("--browser")
+    executor = request.config.getoption("--executor")
+    vnc = request.config.getoption("--vnc")
+    version = request.config.getoption("--bv")
+    logs = request.config.getoption("--logs")
+    video = request.config.getoption("--video")
+    mobile = request.config.getoption("--mobile")
     url = request.config.getoption("--url")
     headless_mode = request.config.getoption("--headless")
 
@@ -62,11 +80,36 @@ def browser(request):
     else:
         raise ValueError(f"Unsupported browser: {browser_name}")
 
-    driver.maximize_window()
+    caps = {
+        "browserName": browser,
+        # "browserVersion": version,
+        # "selenoid:options": {
+        #     "enableVNC": vnc,
+        #     "name": request.node.name,
+        #     "screenResolution": "1280x2000",
+        #     "enableVideo": video,
+        #     "enableLog": logs,
+        #     "timeZone": "Europe/Moscow",
+        #     "env": ["LANG=ru_RU.UTF-8", "LANGUAGE=ru:en", "LC_ALL=ru_RU.UTF-8"]
+        # },
+        # "acceptInsecureCerts": True,
+    }
 
-    request.addfinalizer(driver.quit)
+    for k, v in caps.items():
+        options.set_capability(k, v)
+    driver = webdriver.Remote(
+        command_executor=executor_url,
+        options=options
+    )
+    # driver.maximize_window()
 
-    driver.get(url)
-    driver.url = url
+    # request.addfinalizer(driver.close)
+    if not mobile:
+        driver.maximize_window()
 
+        driver.quit()
+
+    # driver.get(url)
+    # driver.url = url
+    request.addfinalizer(finalizer)
     return driver
