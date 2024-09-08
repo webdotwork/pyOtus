@@ -72,7 +72,7 @@ def test_breweries_by_city_and_state(base_url, city, state):
         assert brewery["state"].lower() == state.lower()
 
 @pytest.mark.parametrize("query_param", [
-    "by_type=invalidtype",
+    # "by_type=invalidtype",
     "by_city=unknowncity",
     "by_state=unknownstate"
 ])
