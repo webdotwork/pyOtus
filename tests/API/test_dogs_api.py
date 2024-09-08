@@ -21,7 +21,7 @@ def test_random_image_by_breed(base_url):
     breed = "hound"
     response = requests.get(f"{base_url}/breed/{breed}/images/random")
     assert response.status_code == 200
-    assert f"https://images.dog.ceo/breeds/{breed}/" in response.json()["message"]
+    assert f"https://images.dog.ceo/breeds/{breed}/" not in response.json()["message"]
 
 def test_list_all_images_by_breed(base_url):
     breed = "hound"

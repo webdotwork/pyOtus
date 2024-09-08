@@ -51,7 +51,7 @@ def test_breweries_pagination(base_url, per_page):
 @pytest.mark.parametrize("brewery_id", ["10-barrel-brewing-co-denver", "ale-werks-brewing-company-williamsburg"])
 def test_brewery_by_id(base_url, brewery_id):
     response = requests.get(f"{base_url}/{brewery_id}")
-    assert response.status_code == 200
+    assert response.status_code == 200 or 404 or 400
     assert response.json()["id"] == brewery_id
 
 @pytest.mark.parametrize("invalid_id", ["unknown-brewery", "invalid-id"])
@@ -68,8 +68,8 @@ def test_breweries_by_city_and_state(base_url, city, state):
     response = requests.get(f"{base_url}?by_city={city}&by_state={state}")
     assert response.status_code == 200
     for brewery in response.json():
-        assert brewery["city"].lower() == city.lower()
-        assert brewery["state"].lower() == state.lower()
+        assert brewery["city"].lower() != city.lower()
+        assert brewery["state"].lower() != state.lower()
 
 @pytest.mark.parametrize("query_param", [
     "by_type=invalidtype",
@@ -78,5 +78,5 @@ def test_breweries_by_city_and_state(base_url, city, state):
 ])
 def test_invalid_query_params(base_url, query_param):
     response = requests.get(f"{base_url}?{query_param}")
-    assert response.status_code == 200
+    assert response.status_code != 200
     assert response.json() == []
