@@ -1,4 +1,0 @@
-[32mINFO    [0m test_add_new_goods:test_add_new_goods.py:16 ====== Started: 1722156243 ======
-[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:18 Opening Admin Page
-[35mDEBUG   [0m test_add_new_goods:test_add_new_goods.py:21 Inputting admin name
-[31m[1mERROR   [0m test_add_new_goods:test_add_new_goods.py:66 Error during test execution: 'AdminPage' object has no attribute 'input_admin_name'

@@ -1,0 +1,1687 @@
+Started by user admin
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/github_otus
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout Code)
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/github_otus/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/webdotwork/pyOtus.git # timeout=10
+Fetching upstream changes from https://github.com/webdotwork/pyOtus.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.2'
+ > git fetch --tags --force --progress -- https://github.com/webdotwork/pyOtus.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 64eccb49ca5400ed7231ef3fdd9538d0e4f32408 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 64eccb49ca5400ed7231ef3fdd9538d0e4f32408 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D main # timeout=10
+ > git checkout -b main 64eccb49ca5400ed7231ef3fdd9538d0e4f32408 # timeout=10
+Commit message: "solved9 (#16)"
+ > git rev-list --no-walk 64eccb49ca5400ed7231ef3fdd9538d0e4f32408 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Setup Environment)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ rm -rf .venv
+[Pipeline] sh
++ python3 -m venv .venv
+[Pipeline] sh
++ ./.venv/bin/pip3 install -r requirements.txt
+Collecting pytest==7.4.3
+  Using cached pytest-7.4.3-py3-none-any.whl (325 kB)
+Collecting selenium==4.16.0
+  Using cached selenium-4.16.0-py3-none-any.whl (10.0 MB)
+Collecting mysql-connector-python==8.0.22
+  Using cached mysql_connector_python-8.0.22-py2.py3-none-any.whl (374 kB)
+Collecting allure-pytest
+  Using cached allure_pytest-2.13.5-py3-none-any.whl (11 kB)
+Collecting iniconfig
+  Using cached iniconfig-2.0.0-py3-none-any.whl (5.9 kB)
+Collecting packaging
+  Using cached packaging-24.1-py3-none-any.whl (53 kB)
+Collecting pluggy<2.0,>=0.12
+  Using cached pluggy-1.5.0-py3-none-any.whl (20 kB)
+Collecting urllib3[socks]<3,>=1.26
+  Using cached urllib3-2.2.2-py3-none-any.whl (121 kB)
+Collecting trio~=0.17
+  Using cached trio-0.26.2-py3-none-any.whl (475 kB)
+Collecting trio-websocket~=0.9
+  Using cached trio_websocket-0.11.1-py3-none-any.whl (17 kB)
+Collecting certifi>=2021.10.8
+  Using cached certifi-2024.8.30-py3-none-any.whl (167 kB)
+Collecting protobuf>=3.0.0
+  Using cached protobuf-5.28.0-cp38-abi3-manylinux2014_x86_64.whl (316 kB)
+Collecting allure-python-commons==2.13.5
+  Using cached allure_python_commons-2.13.5-py3-none-any.whl (15 kB)
+Collecting attrs>=16.0.0
+  Using cached attrs-24.2.0-py3-none-any.whl (63 kB)
+Collecting sortedcontainers
+  Using cached sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+Collecting idna
+  Using cached idna-3.8-py3-none-any.whl (66 kB)
+Collecting outcome
+  Using cached outcome-1.3.0.post0-py2.py3-none-any.whl (10 kB)
+Collecting sniffio>=1.3.0
+  Using cached sniffio-1.3.1-py3-none-any.whl (10 kB)
+Collecting wsproto>=0.14
+  Using cached wsproto-1.2.0-py3-none-any.whl (24 kB)
+Collecting pysocks!=1.5.7,<2.0,>=1.5.6
+  Using cached PySocks-1.7.1-py3-none-any.whl (16 kB)
+Collecting h11<1,>=0.9.0
+  Using cached h11-0.14.0-py3-none-any.whl (58 kB)
+Installing collected packages: sortedcontainers, urllib3, sniffio, pysocks, protobuf, pluggy, packaging, iniconfig, idna, h11, certifi, attrs, wsproto, pytest, outcome, mysql-connector-python, allure-python-commons, trio, allure-pytest, trio-websocket, selenium
+Successfully installed allure-pytest-2.13.5 allure-python-commons-2.13.5 attrs-24.2.0 certifi-2024.8.30 h11-0.14.0 idna-3.8 iniconfig-2.0.0 mysql-connector-python-8.0.22 outcome-1.3.0.post0 packaging-24.1 pluggy-1.5.0 protobuf-5.28.0 pysocks-1.7.1 pytest-7.4.3 selenium-4.16.0 sniffio-1.3.1 sortedcontainers-2.4.0 trio-0.26.2 trio-websocket-0.11.1 urllib3-2.2.2 wsproto-1.2.0
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run Tests with selenium)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ ./.venv/bin/pip3 install -r requirements.txt
+Requirement already satisfied: pytest==7.4.3 in ./.venv/lib/python3.11/site-packages (from -r requirements.txt (line 1)) (7.4.3)
+Requirement already satisfied: selenium==4.16.0 in ./.venv/lib/python3.11/site-packages (from -r requirements.txt (line 2)) (4.16.0)
+Requirement already satisfied: mysql-connector-python==8.0.22 in ./.venv/lib/python3.11/site-packages (from -r requirements.txt (line 3)) (8.0.22)
+Requirement already satisfied: allure-pytest in ./.venv/lib/python3.11/site-packages (from -r requirements.txt (line 4)) (2.13.5)
+Requirement already satisfied: iniconfig in ./.venv/lib/python3.11/site-packages (from pytest==7.4.3->-r requirements.txt (line 1)) (2.0.0)
+Requirement already satisfied: packaging in ./.venv/lib/python3.11/site-packages (from pytest==7.4.3->-r requirements.txt (line 1)) (24.1)
+Requirement already satisfied: pluggy<2.0,>=0.12 in ./.venv/lib/python3.11/site-packages (from pytest==7.4.3->-r requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied: urllib3[socks]<3,>=1.26 in ./.venv/lib/python3.11/site-packages (from selenium==4.16.0->-r requirements.txt (line 2)) (2.2.2)
+Requirement already satisfied: trio~=0.17 in ./.venv/lib/python3.11/site-packages (from selenium==4.16.0->-r requirements.txt (line 2)) (0.26.2)
+Requirement already satisfied: trio-websocket~=0.9 in ./.venv/lib/python3.11/site-packages (from selenium==4.16.0->-r requirements.txt (line 2)) (0.11.1)
+Requirement already satisfied: certifi>=2021.10.8 in ./.venv/lib/python3.11/site-packages (from selenium==4.16.0->-r requirements.txt (line 2)) (2024.8.30)
+Requirement already satisfied: protobuf>=3.0.0 in ./.venv/lib/python3.11/site-packages (from mysql-connector-python==8.0.22->-r requirements.txt (line 3)) (5.28.0)
+Requirement already satisfied: allure-python-commons==2.13.5 in ./.venv/lib/python3.11/site-packages (from allure-pytest->-r requirements.txt (line 4)) (2.13.5)
+Requirement already satisfied: attrs>=16.0.0 in ./.venv/lib/python3.11/site-packages (from allure-python-commons==2.13.5->allure-pytest->-r requirements.txt (line 4)) (24.2.0)
+Requirement already satisfied: sortedcontainers in ./.venv/lib/python3.11/site-packages (from trio~=0.17->selenium==4.16.0->-r requirements.txt (line 2)) (2.4.0)
+Requirement already satisfied: idna in ./.venv/lib/python3.11/site-packages (from trio~=0.17->selenium==4.16.0->-r requirements.txt (line 2)) (3.8)
+Requirement already satisfied: outcome in ./.venv/lib/python3.11/site-packages (from trio~=0.17->selenium==4.16.0->-r requirements.txt (line 2)) (1.3.0.post0)
+Requirement already satisfied: sniffio>=1.3.0 in ./.venv/lib/python3.11/site-packages (from trio~=0.17->selenium==4.16.0->-r requirements.txt (line 2)) (1.3.1)
+Requirement already satisfied: wsproto>=0.14 in ./.venv/lib/python3.11/site-packages (from trio-websocket~=0.9->selenium==4.16.0->-r requirements.txt (line 2)) (1.2.0)
+Requirement already satisfied: pysocks!=1.5.7,<2.0,>=1.5.6 in ./.venv/lib/python3.11/site-packages (from urllib3[socks]<3,>=1.26->selenium==4.16.0->-r requirements.txt (line 2)) (1.7.1)
+Requirement already satisfied: h11<1,>=0.9.0 in ./.venv/lib/python3.11/site-packages (from wsproto>=0.14->trio-websocket~=0.9->selenium==4.16.0->-r requirements.txt (line 2)) (0.14.0)
++ ./.venv/bin/pytest --browser=chrome --headless --url=http://10.0.47.57:8081/administration/ tests/test_add_new_goods.py --alluredir=allure-results
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-7.4.3, pluggy-1.5.0 -- /var/jenkins_home/workspace/github_otus/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /var/jenkins_home/workspace/github_otus
+configfile: pytest.ini
+plugins: allure-pytest-2.13.5
+collecting ... collected 1 item
+
+tests/test_add_new_goods.py::test_add_new_goods --- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 15, in test_add_new_goods
+    logger.info('====== Started: {} ======'.format(int(time.time())))
+Message: '====== Started: 1725015461 ======'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 17, in test_add_new_goods
+    logger.debug('Opening Admin Page')
+Message: 'Opening Admin Page'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 20, in test_add_new_goods
+    logger.debug('Inputting admin credentials')
+Message: 'Inputting admin credentials'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 23, in test_add_new_goods
+    logger.debug('Submitting admin credentials')
+Message: 'Submitting admin credentials'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 26, in test_add_new_goods
+    logger.debug('Navigating to Catalog')
+Message: 'Navigating to Catalog'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 29, in test_add_new_goods
+    logger.debug('Navigating to Products')
+Message: 'Navigating to Products'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 32, in test_add_new_goods
+    logger.debug('Adding new product')
+Message: 'Adding new product'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 35, in test_add_new_goods
+    logger.debug('Entering product description')
+Message: 'Entering product description'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 38, in test_add_new_goods
+    logger.debug('Entering product category')
+Message: 'Entering product category'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 41, in test_add_new_goods
+    logger.debug('Entering product tags')
+Message: 'Entering product tags'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 44, in test_add_new_goods
+    logger.debug('Navigating to SEO tab')
+Message: 'Navigating to SEO tab'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 47, in test_add_new_goods
+    logger.debug('Entering SEO data')
+Message: 'Entering SEO data'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 50, in test_add_new_goods
+    logger.debug('Navigating to Data tab')
+Message: 'Navigating to Data tab'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 53, in test_add_new_goods
+    logger.debug('Entering product model')
+Message: 'Entering product model'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 56, in test_add_new_goods
+    logger.debug('Submitting new product form')
+Message: 'Submitting new product form'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 449, in format
+    return self._format(record)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 445, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'levellevel'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 690, in format
+    s = self.formatMessage(record)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 659, in formatMessage
+    return self._style.format(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/logging/__init__.py", line 451, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'levellevel'
+Call stack:
+  File "/var/jenkins_home/workspace/github_otus/./.venv/bin/pytest", line 8, in <module>
+    sys.exit(console_main())
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 192, in console_main
+    code = main()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/config/__init__.py", line 169, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 318, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 271, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 325, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/main.py", line 350, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 222, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 261, in call_runtest_hook
+    return CallInfo.from_call(
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 341, in from_call
+    result: Optional[TResult] = func()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 262, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/runner.py", line 169, in pytest_runtest_call
+    item.runtest()
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 1792, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/pluggy/_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+  File "/var/jenkins_home/workspace/github_otus/.venv/lib/python3.11/site-packages/_pytest/python.py", line 194, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/var/jenkins_home/workspace/github_otus/tests/test_add_new_goods.py", line 59, in test_add_new_goods
+    logger.info('====== Finished: {} ======'.format(int(time.time())))
+Message: '====== Finished: 1725015470 ======'
+Arguments: ()
+PASSED
+
+============================== 1 passed in 13.11s ==============================
++ ./.venv/bin/pytest --browser=chrome --headless --url=http://10.0.47.57:8081/administration/ tests/test_del_goods.py --alluredir=allure-results
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-7.4.3, pluggy-1.5.0 -- /var/jenkins_home/workspace/github_otus/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /var/jenkins_home/workspace/github_otus
+configfile: pytest.ini
+plugins: allure-pytest-2.13.5
+collecting ... collected 1 item
+
+tests/test_del_goods.py::test_del_prod PASSED
+
+============================== 1 passed in 7.37s ===============================
++ ./.venv/bin/pytest --browser=chrome --headless --url=http://10.0.47.57:8081 tests/test_curency_check.py --alluredir=allure-results
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-7.4.3, pluggy-1.5.0 -- /var/jenkins_home/workspace/github_otus/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /var/jenkins_home/workspace/github_otus
+configfile: pytest.ini
+plugins: allure-pytest-2.13.5
+collecting ... collected 1 item
+
+tests/test_curency_check.py::test_main_page_currency PASSED
+
+============================== 1 passed in 3.92s ===============================
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Archive Allure Report)
+[Pipeline] archiveArtifacts
+Archiving artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
